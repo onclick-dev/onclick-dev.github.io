@@ -1,0 +1,1220 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Backend</name>
+    </assembly>
+    <members>
+        <member name="M:Backend.Controllers.ArticlesController.Get(System.Int32,System.Boolean,System.Int32)">
+            <summary>  
+            Get Article
+            </summary>
+            <param name="id">Get all if default</param>
+            <param name="onlyActive">Get active if true</param>
+            <param name="idClient">Get active if true</param>
+        </member>
+        <member name="M:Backend.Controllers.ArticlesController.GetHonoraires(System.Int32,System.Boolean,System.Int32)">
+            <summary>  
+            Get Honoraire
+            </summary>
+            <param name="id">Get all if default</param>
+            <param name="onlyActive">Get active if true</param>
+            <param name="idClient">Get active if true</param>
+        </member>
+        <member name="M:Backend.Controllers.ArticlesController.GetCharge(System.Int32,System.Boolean,System.Int32)">
+            <summary>  
+            Get Charge
+            </summary>
+            <param name="id">Get all if default</param>
+            <param name="onlyActive">Get active if true</param>
+            <param name="idClient">Get by client</param>
+        </member>
+        <member name="M:Backend.Controllers.ArticlesController.Post(Backend.FrontModel.ArticleFront)">
+            <summary>  
+            Add new Article
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                POST/articles   
+                {        
+                    "refArticle": "string",
+                    "designation": "string",
+                    "idFamille": 0,
+                    "idTva": 0,
+                    "idTypeArticle": 0,
+                    "qtStock": 0,
+                    "stockMin": 0,
+                    "active": true
+                }   
+            
+            Validation condition :  Customer name must be unique 
+               
+            </remarks>   
+            <param name="articleFrontAdd"></param>
+        </member>
+        <member name="M:Backend.Controllers.ArticlesController.Put(Backend.FrontModel.ArticleFront)">
+            <summary>  
+            Update a article 
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                Put/article  
+                {
+                    "id" : 0
+                    "refArticle": "string",
+                    "designation": "string",
+                    "idFamille": 0,
+                    "idTva": 0,
+                    "idTypeArticle": 0,
+                    "qtStock": 0,
+                    "stockMin": 0,
+                    "active": true
+                }   
+            
+            Validation condition :  Customer name must be unique 
+               
+            </remarks>    
+            <param name="articleFrontUpdate"></param>
+            <returns>A updated Customer</returns>
+            <response code="200">Returns the updated Customer</response>
+            <response code="400"> The sent model is invalid</response>
+            <response code="401"> Not exist or Not active account: erreur MSG</response>
+            <response code="403"> You Have no right on this module.</response>
+            <response code="500"> InternalServerError</response>
+        </member>
+        <member name="M:Backend.Controllers.ArticlesController.Delete(System.Int32)">
+            <summary>  
+            Delete a article 
+            </summary>
+            <remarks>    
+                Validation condition :  Must have no related data 
+               
+            </remarks>    
+            <param name="id"></param>
+            <returns>Returns the list of Customers</returns>
+            <response code="200">Returns the list of Customers</response>
+            <response code="401"> Not exist or Not active account: erreur MSG</response>
+            <response code="403"> You Have no right on this module.</response>
+            <response code="404"> NotFound.</response>
+            <response code="500"> InternalServerError</response>
+        </member>
+        <member name="M:Backend.Controllers.CategorieTransactionsController.Get(System.Int32)">
+            <summary>  
+            Get Categorie Transaction
+            </summary>
+            <param name="id">Get all if default</param>
+        </member>
+        <member name="M:Backend.Controllers.CategorieTransactionsController.Post(Backend.FrontModel.CategorieTranFront)">
+            <summary>  
+            Add new Categorie
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                POST/categorietran   
+                {          
+                    "Designation": "dd",
+                    "remarque": "dd"
+                }   
+            
+               
+            </remarks>   
+            <param name="categorieFrontAdd"></param>
+            <response code="200">List of Categorie transaction</response>
+        </member>
+        <member name="M:Backend.Controllers.CategorieTransactionsController.Put(Backend.FrontModel.CategorieTranFront)">
+            <summary>  
+            Update a Categorie transaction 
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                Put/categorietran 
+                {       
+                    "id" : 1,
+                    "designation": "dd",
+                    "remarque": "dd"
+                }       
+            </remarks>    
+            <param name="categorieFrontUpdate"></param>
+            <returns>A updated Categorie</returns>
+            <response code="200">Returns the updated Customer</response>
+        </member>
+        <member name="M:Backend.Controllers.CategorieTransactionsController.Delete(System.Int32)">
+            <summary>  
+            Delete a Categorie Transaction
+            </summary>
+            <remarks>    
+                Validation condition :  must have no related data 
+               
+            </remarks>    
+            <param name="id"></param>
+            <returns>Returns the list of Categorie Transaction</returns>
+            <response code="200">Returns the list of Customers</response>
+        </member>
+        <member name="M:Backend.Controllers.ClientController.Get(System.Int32,System.Boolean)">
+            <summary>  
+             Get CLient
+            </summary>
+            <param name="id">Get all if default</param>
+            <param name="onlyActive">Get active if true</param>
+        </member>
+        <member name="M:Backend.Controllers.ClientController.Post(Backend.FrontModel.ClientFront)">
+            <summary>  
+            Add new Client
+            </summary>
+            <remarks>    
+            Sample request: 
+                
+                POST/client   
+                {          
+                    "raisonSocial"= "string",
+                    "seigeSocial"= "string",
+                    "numRc"="string",
+                    "domaineActivite"="string",
+                    "capital"=0,
+                    "gerent"= "string",
+                    "active"= true,
+                    "deleted"= true
+                }   
+            
+            Validation condition :  Customer name must be unique 
+               
+            </remarks>   
+            <param name="clientFrontAdd"></param>
+            <response code="200">List of all customer if the id parametre = 0 else the customer with the CustomId = id</response>
+        </member>
+        <member name="M:Backend.Controllers.ClientController.Put(Backend.FrontModel.ClientFront)">
+            <summary>  
+            Update a Customer 
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                Put /Client    
+                {    
+                    "id" : 0      
+                    "raisonSocial"= "string",
+                    "seigeSocial"= "string",
+                    "numRc"="string",
+                    "domaineActivite"="string",
+                    "capital"=0,
+                    "gerent"= "string",
+                    "active"= true,
+                    "deleted"= true
+                }     
+            
+            Validation condition :  Customer name must be unique 
+               
+            </remarks>    
+            <param name="customerFrontUpdate"></param>
+            <returns>A updated Customer</returns>
+            <response code="200">Returns the updated Customer</response>
+        </member>
+        <member name="M:Backend.Controllers.ClientController.Delete(System.Int32)">
+            <summary>  
+            Delete a Customer 
+            </summary>
+            <remarks>    
+                Validation condition :  Customer must have no related data 
+               
+            </remarks>    
+            <param name="id"></param>
+            <returns>Returns the list of Customers</returns>
+            <response code="200">Returns the list of Customers</response>
+            <response code="401"> Not exist or Not active account: erreur MSG</response>
+            <response code="403"> You Have no right on this module.</response>
+            <response code="404"> NotFound.</response>
+            <response code="500"> InternalServerError</response>
+        </member>
+        <member name="M:Backend.Controllers.ContactsController.Get(System.Int32,System.Boolean,System.Int32)">
+            <summary>  
+            Get Contact
+            </summary>
+            <param name="id">Get all if default</param>
+            <param name="onlyActive">Get active if true</param>
+            <param name="idClient">Get active if true</param>
+        </member>
+        <member name="M:Backend.Controllers.ContactsController.Post(Backend.FrontModel.ContactFront)">
+            <summary>  
+            Add new Contact
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                POST/contact   
+               {
+                    "idClient": 3,
+                    "typeContact": "mail",
+                    "contact": "xx@yy.com"
+                }
+            
+            Validation condition :  Customer name must be unique 
+               
+            </remarks>   
+            <param name="contactFrontAdd"></param>
+            <response code="200">List of all customer if the id parametre = 0 else the customer with the CustomId = id</response>
+        </member>
+        <member name="M:Backend.Controllers.ContactsController.Put(Backend.FrontModel.ContactFront)">
+            <summary>  
+            Update a contact 
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                Put/contact  
+                {
+                    "id": 0,
+                    "idClient": 0,
+                    "typeContact": "string",
+                    "contact": "string"
+                } 
+            </remarks>    
+            <param name="contactFrontUpdate"></param>
+            <returns>A updated Customer</returns>
+            <response code="200">Returns the updated Customer</response>
+            <response code="400"> The sent model is invalid</response>
+            <response code="401"> Not exist or Not active account: erreur MSG</response>
+            <response code="403"> You Have no right on this module.</response>
+            <response code="500"> InternalServerError</response>
+        </member>
+        <member name="M:Backend.Controllers.ContactsController.Delete(System.Int32)">
+            <summary>  
+            Delete a contact 
+            </summary>
+            <remarks>     
+            </remarks>    
+            <param name="id"></param>
+            <returns>Returns the list of Customers</returns>
+            <response code="200">Returns the list of Customers</response>
+            <response code="401"> Not exist or Not active account: erreur MSG</response>
+            <response code="403"> You Have no right on this module.</response>
+            <response code="404"> NotFound.</response>
+            <response code="500"> InternalServerError</response>
+        </member>
+        <member name="M:Backend.Controllers.DeclarationsController.Get(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>  
+            Get Déclartion spéciale
+            </summary>
+            <param name="id">Get all if default</param>
+            <param name="IDClient">Get all if default</param>
+            <param name="byMonth">Get all if default</param>
+            <param name="byYear">Get all if default</param>
+        </member>
+        <member name="M:Backend.Controllers.DeclarationsController.Post(Backend.FrontModel.DeclarationFront)">
+            <summary>  
+            Add new Déclartion spéciale
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                POST/declarsp
+                {   
+                    "dateDeclaStr": "2021-05-10",
+                    "idClient": 0,
+                    "honoraire": 0,
+                    "charge": 0,
+                    "net": 0
+                }   
+            </remarks>   
+            <param name="declarFrontAdd"></param>
+            <response code="200"></response>
+        </member>
+        <member name="M:Backend.Controllers.DeclarationsController.Put(Backend.FrontModel.DeclarationFront)">
+            <summary>  
+            Update a Déclartion spéciale
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                Put/declarsp 
+                {       
+                    "id" : 1,
+                    "dateDeclaStr": "2021-05-10",
+                    "idClient": 0,
+                    "honoraire": 0,
+                    "charge": 0,
+                    "net": 0
+                }   
+            </remarks>    
+            <param name="declarFrontUpdate"></param>
+            <response code="200">Returns the updated Customer</response>
+        </member>
+        <member name="M:Backend.Controllers.DeclarationsController.Delete(System.Int32)">
+            <summary>  
+            Delete a Déclartion spéciale
+            </summary>
+            <remarks>    
+                Validation condition :  must have no related data 
+            </remarks>    
+            <param name="id"></param>
+            <response code="200"></response>
+        </member>
+        <member name="M:Backend.Controllers.DeclarationSpController.Get(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>  
+            Get Déclartion spéciale
+            </summary>
+            <param name="id">Get all if default</param>
+            <param name="IDClient">Get all if default</param>
+            <param name="byMonth">Get all if default</param>
+            <param name="byYear">Get all if default</param>
+        </member>
+        <member name="M:Backend.Controllers.DeclarationSpController.Post(Backend.FrontModel.PerstationServiceFront)">
+            <summary>  
+            Add new Prestation du service
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                POST/perstaser
+                {   
+                    "dateDeclaStr": "2021-05-10",
+                    "idClient": 0,
+                    "honoraire": 0,
+                    "charge": 0,
+                    "net": 0
+                }   
+            </remarks>   
+            <param name="declarSpFrontAdd"></param>
+            <response code="200"></response>
+        </member>
+        <member name="M:Backend.Controllers.DeclarationSpController.Put(Backend.FrontModel.PerstationServiceFront)">
+            <summary>  
+            Update a Prestation de service
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                Put/perstaser 
+                {       
+                    "id" : 1,
+                    "dateDeclaStr": "2021-05-10",
+                    "idClient": 0,
+                    "honoraire": 0,
+                    "charge": 0,
+                    "net": 0
+                }   
+            </remarks>    
+            <param name="declarSpFrontUpdate"></param>
+            <response code="200">Returns the updated Customer</response>
+        </member>
+        <member name="M:Backend.Controllers.DeclarationSpController.Delete(System.Int32)">
+            <summary>  
+            Delete a Prestation de service
+            </summary>
+            <remarks>    
+                Validation condition :  must have no related data 
+            </remarks>    
+            <param name="id"></param>
+            <response code="200"></response>
+        </member>
+        <member name="M:Backend.Controllers.FacturesController.Get(System.Int32,System.Int32,System.Int32,System.Nullable{System.Boolean})">
+            <summary>  
+             Get Facture
+            </summary>
+            <param name="id">Get all if default</param>
+            <param name="IDClient">Get by client</param>
+            <param name="IDTiers">Get by tiers</param>
+            <param name="cloturer">Get only cloturer</param>
+        </member>
+        <member name="M:Backend.Controllers.FacturesController.post(Backend.FrontModel.FactureFront)">
+            <summary>
+            Post new facture
+            </summary>
+            <param name="factureFront"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Backend.Controllers.FacturesController.Put(Backend.FrontModel.FactureFront)">
+            <summary>  
+            Update a Customer 
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                Put /Customer    
+                {
+                }   
+            
+            Validation condition :  Customer name must be unique 
+               
+            </remarks>    
+            <param name="factureFront"></param>
+            <returns>A updated Customer</returns>
+            <response code="200">Returns the updated Customer</response>
+            <response code="400"> The sent model is invalid</response>
+            <response code="401"> Not exist or Not active account: erreur MSG</response>
+            <response code="403"> You Have no right on this module.</response>
+            <response code="500"> InternalServerError</response>
+        </member>
+        <member name="M:Backend.Controllers.FacturesController.Delete(System.Int32)">
+            <summary>  
+            Delete a Customer 
+            </summary>
+            <remarks>    
+                Validation condition :  Customer must have no related data 
+               
+            </remarks>    
+            <param name="id"></param>
+            <returns>Returns the list of Customers</returns>
+            <response code="200">Returns the list of Customers</response>
+            <response code="401"> Not exist or Not active account: erreur MSG</response>
+            <response code="403"> You Have no right on this module.</response>
+            <response code="404"> NotFound.</response>
+            <response code="500"> InternalServerError</response>
+        </member>
+        <member name="M:Backend.Controllers.FamillesController.Get(System.Int32,System.Int32)">
+            <summary>  
+            Get Famille Article
+            </summary>
+            <param name="id">Get all if default</param>
+            <param name="idClient">Get active if true</param>
+        </member>
+        <member name="M:Backend.Controllers.FamillesController.Post(Backend.FrontModel.FamilleArticleFront)">
+            <summary>  
+            Add new Famille d'arrticle
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                POST/famille   
+                {          
+                    "code": "Food",
+                    "desg": "Food",
+                    "idClient": 1
+                }   
+            
+            Validation condition :  Customer name must be unique 
+               
+            </remarks>   
+            <param name="familleFrontAdd"></param>
+            <response code="200">List of all customer if the id parametre = 0 else the customer with the CustomId = id</response>
+        </member>
+        <member name="M:Backend.Controllers.FamillesController.Put(Backend.FrontModel.FamilleArticleFront)">
+            <summary>  
+            Update a Famille Article 
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                Put/famille  
+                {       
+                    "id" : 1,
+                    "code": "Food",
+                    "desg": "Food",
+                    "idClient": 1
+                }   
+            
+            Validation condition :  Customer name must be unique 
+               
+            </remarks>    
+            <param name="familleFrontUpdate"></param>
+            <returns>A updated Customer</returns>
+            <response code="200">Returns the updated Customer</response>
+            <response code="400"> The sent model is invalid</response>
+            <response code="401"> Not exist or Not active account: erreur MSG</response>
+            <response code="403"> You Have no right on this module.</response>
+            <response code="500"> InternalServerError</response>
+        </member>
+        <member name="M:Backend.Controllers.FamillesController.Delete(System.Int32)">
+            <summary>  
+            Delete a famille
+            </summary>
+            <remarks>    
+                Validation condition :  must have no related data 
+               
+            </remarks>    
+            <param name="id"></param>
+            <returns>Returns the list of Customers</returns>
+            <response code="200">Returns the list of Customers</response>
+            <response code="401"> Not exist or Not active account: erreur MSG</response>
+            <response code="403"> You Have no right on this module.</response>
+            <response code="404"> NotFound.</response>
+            <response code="500"> InternalServerError</response>
+        </member>
+        <member name="M:Backend.Controllers.ListesPrixController.Get(System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>  
+            Get Liste Prix
+            </summary>
+            <param name="id">Get all if default</param>
+            <param name="idArticle">Get active if true</param>
+            <param name="idClient">Get active if true</param>
+            <param name="onlyActive">Get active if true</param>
+        </member>
+        <member name="M:Backend.Controllers.ListesPrixController.GetHonoraire(System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>  
+            Get Prix honoraire
+            </summary>
+            <param name="id">Get all if default</param>
+            <param name="idArticle">Get by id Article</param>
+            <param name="idClient">Get by client</param>
+            <param name="onlyActive">Get active if true</param>
+        </member>
+        <member name="M:Backend.Controllers.ListesPrixController.GetCharge(System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>  
+            Get Prix charge
+            </summary>
+            <param name="id">Get all if default</param>
+            <param name="idArticle">Get by id Article</param>
+            <param name="idClient">Get by client</param>
+            <param name="onlyActive">Get active if true</param>
+        </member>
+        <member name="M:Backend.Controllers.ListesPrixController.Post(Backend.FrontModel.ListePrixFront)">
+            <summary>  
+            Add new Article
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                POST/listeprix   
+                {    
+                }   
+            
+            Validation condition :  Customer name must be unique 
+               
+            </remarks>   
+            <param name="prixFrontAdd"></param>
+            <response code="200">List of all customer if the id parametre = 0 else the customer with the CustomId = id</response>
+        </member>
+        <member name="M:Backend.Controllers.ListesPrixController.Put(Backend.FrontModel.ListePrixFront)">
+            <summary>  
+            Update a ListePrix 
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                Put/listeprix  
+                {
+                }   
+            
+            Validation condition :  Customer name must be unique 
+               
+            </remarks>    
+            <param name="prixFrontUpdate"></param>
+            <returns>A updated Customer</returns>
+            <response code="200">Returns the updated Customer</response>
+            <response code="400"> The sent model is invalid</response>
+            <response code="401"> Not exist or Not active account: erreur MSG</response>
+            <response code="403"> You Have no right on this module.</response>
+            <response code="500"> InternalServerError</response>
+        </member>
+        <member name="M:Backend.Controllers.ListesPrixController.Delete(System.Int32)">
+            <summary>  
+            Delete a liste Prix 
+            </summary>
+            <remarks>    
+                Validation condition :  Customer must have no related data 
+               
+            </remarks>    
+            <param name="id"></param>
+            <returns>Returns the list of Customers</returns>
+            <response code="200">Returns the list of Customers</response>
+            <response code="401"> Not exist or Not active account: erreur MSG</response>
+            <response code="403"> You Have no right on this module.</response>
+            <response code="404"> NotFound.</response>
+            <response code="500"> InternalServerError</response>
+        </member>
+        <member name="M:Backend.Controllers.PaiementsController.Get(System.Int32,System.Int32,System.Int32,System.Int32,System.Nullable{System.Boolean})">
+            <summary>  
+             Get Paiement
+            </summary>
+            <param name="id">Get all if default</param>
+            <param name="IDFacture">Get by Facture</param>
+            <param name="IDClient">Get by client</param>
+            <param name="IDTiers">Get by tiers</param>
+            <param name="cloturer">Get only cloturer</param>
+        </member>
+        <member name="M:Backend.Controllers.PaiementsController.post(Backend.FrontModel.PaiementFront)">
+            <summary>
+            Post new paiement facture
+            </summary>
+            <param name="paiementfactureFront"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Backend.Controllers.PaiementsController.Put(Backend.FrontModel.PaiementFront)">
+            <summary>  
+            Update a paiement facture 
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+            
+            Validation condition :  Customer name must be unique 
+               
+            </remarks>    
+            <param name="paiementfactureFront"></param>
+        </member>
+        <member name="M:Backend.Controllers.PaiementsController.Delete(System.Int32)">
+            <summary>  
+            Delete a Customer 
+            </summary>
+            <remarks></remarks>    
+            <param name="id"></param>
+        </member>
+        <member name="M:Backend.Controllers.RecetteFinancesController.Get(System.Int32)">
+            <summary>  
+            Get Recette Finance
+            </summary>
+            <param name="id">Get all if default</param>
+        </member>
+        <member name="M:Backend.Controllers.RecetteFinancesController.Post(Backend.FrontModel.RecetteFinanceFront)">
+            <summary>  
+            Add new Recette Finance
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                POST/recetteFinance   
+                {   
+                    "dateRf": "2021-05-01",
+                    "idTiers": 0,
+                    "montant": 0
+                }   
+            </remarks>   
+            <param name="recetteFinanceFrontAdd"></param>
+            <response code="200"></response>
+        </member>
+        <member name="M:Backend.Controllers.RecetteFinancesController.Put(Backend.FrontModel.RecetteFinanceFront)">
+            <summary>  
+            Update a Recette Finance
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                Put/recetteFinance 
+                {       
+                    "id" : 1,
+                    "dateRf": "2021-05-01",
+                    "idTiers": 0,
+                    "montant": 0
+                }   
+            </remarks>    
+            <param name="recetteFinanceFrontUpdate"></param>
+            <response code="200">Returns the updated Customer</response>
+        </member>
+        <member name="M:Backend.Controllers.RecetteFinancesController.Delete(System.Int32)">
+            <summary>  
+            Delete a recetteFinance
+            </summary>
+            <remarks>    
+                Validation condition :  must have no related data 
+            </remarks>    
+            <param name="id"></param>
+            <response code="200">Returns the list of Customers</response>
+        </member>
+        <member name="M:Backend.Controllers.SettingsController.GetFormeJuridique">
+            <summary>
+            Get les forme juridique
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Backend.Controllers.SettingsController.postFJ(Backend.FrontModel.FormeJuridique)">
+            <summary>
+            Post new FJ
+            </summary>
+            <param name="formeJuridiqueFront"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Backend.Controllers.SettingsController.GetDomaineActivite">
+            <summary>
+            Get les Domaine d'activité
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Backend.Controllers.SettingsController.postDA(Backend.FrontModel.DomaineActivite)">
+            <summary>
+            Post new Domaine d'activité
+            </summary>
+            <param name="domaineActiviteFront"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Backend.Controllers.SettingsController.putDA(Backend.FrontModel.DomaineActivite)">
+            <summary>
+            Put new Domaine d'activité
+            </summary>
+            <param name="domaineActiviteFront"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Backend.Controllers.SettingsController.GetModePayement">
+            <summary>
+            Get les Mode de Payement
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Backend.Controllers.SettingsController.postMP(Backend.FrontModel.ModePaiement)">
+            <summary>
+            Post new les Mode de Payement
+            </summary>
+            <param name="modePayementFront"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Backend.Controllers.SettingsController.GetEtatFacture">
+            <summary>
+            Get les Etats Facture
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Backend.Controllers.SettingsController.postEF(Backend.FrontModel.EtatFacture)">
+            <summary>
+            Post new les Mode de Payement
+            </summary>
+            <param name="etatFactureFront"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Backend.Controllers.TransactionController.Get(System.Int32,System.Int32,System.String,System.String,System.String)">
+            <summary>  
+            Get Transaction
+            </summary>
+            <param name="id">Get all if default</param>
+            <param name="idClient">Get all if default</param>
+            <param name="typeTra">Get all if default</param>
+            <param name="catTra">Get all if default</param>
+            <param name="month">Get all if default</param>
+        </member>
+        <member name="M:Backend.Controllers.TransactionController.Post(Backend.FrontModel.TransactionFront)">
+            <summary>  
+            Add new Transaction
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                POST/transaction   
+                {   
+                    "dateRf": "2021-05-01",
+                    "idTiers": 0,
+                    "montant": 0
+                }   
+            </remarks>   
+            <param name="transactionFrontAdd"></param>
+            <response code="200"></response>
+        </member>
+        <member name="M:Backend.Controllers.TransactionController.Put(Backend.FrontModel.TransactionFront)">
+            <summary>  
+            Update a Transaction
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                Put/transaction
+                {       
+                    "id" : 1,
+                    "dateRf": "2021-05-01",
+                    "idTiers": 0,
+                    "montant": 0
+                }   
+            </remarks>    
+            <param name="transactionFrontUpdate"></param>
+            <response code="200">Returns the updated Customer</response>
+        </member>
+        <member name="M:Backend.Controllers.TransactionController.Delete(System.Int32)">
+            <summary>  
+            Delete a Transaction
+            </summary>
+            <remarks>    
+                Validation condition :  must have no related data 
+            </remarks>    
+            <param name="id"></param>
+            <response code="200">Returns the list of transaction</response>
+        </member>
+        <member name="M:Backend.Controllers.TVAsController.Get(System.Int32,System.Int32)">
+            <summary>  
+            Get TVA
+            </summary>
+            <param name="id">Get all if default</param>
+            <param name="idClient">Get active if true</param>
+        </member>
+        <member name="M:Backend.Controllers.TVAsController.Post(Backend.FrontModel.TvaFront)">
+            <summary>  
+            Add new TVA
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                POST/tva   
+                {          
+                    "code": "12%",
+                    "taux": 0.12,
+                    "idClient": 1
+                }   
+            
+               
+            </remarks>   
+            <param name="tvaFrontAdd"></param>
+            <response code="200">List of all tva if the id parametre = 0 else the customer with the CustomId = id</response>
+        </member>
+        <member name="M:Backend.Controllers.TVAsController.Put(Backend.FrontModel.TvaFront)">
+            <summary>  
+            Update a TVA 
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                Put/tva  
+                {       
+                    "id" : 1,
+                    "code": "12%",
+                    "taux": "0.12",
+                    "idClient": 1
+                }   
+            
+               
+            </remarks>    
+            <param name="tvaFrontUpdate"></param>
+            <returns>A updated TVA</returns>
+            <response code="200">Returns the updated Customer</response>
+        </member>
+        <member name="M:Backend.Controllers.TVAsController.Delete(System.Int32)">
+            <summary>  
+            Delete a tva
+            </summary>
+            <remarks>    
+                Validation condition :  must have no related data 
+               
+            </remarks>    
+            <param name="id"></param>
+            <returns>Returns the list of tvas</returns>
+            <response code="200">Returns the list of Customers</response>
+        </member>
+        <member name="M:Backend.Controllers.TypeArticlesController.Get(System.Int32)">
+            <summary>  
+            Get Type Article
+            </summary>
+            <param name="id">Get all if default</param>
+        </member>
+        <member name="M:Backend.Controllers.TypeArticlesController.Post(Backend.FrontModel.TypeArticleFront)">
+            <summary>  
+            Add new Type d'article
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                POST/typearticle   
+                {          
+                   "desg": "string",
+                   "impact": 0
+                }   
+            
+            Validation condition :  Customer name must be unique 
+               
+            </remarks>   
+            <param name="typeArticleFrontAdd"></param>
+            <response code="200">List of all customer if the id parametre = 0 else the customer with the CustomId = id</response>
+        </member>
+        <member name="M:Backend.Controllers.TypeArticlesController.Put(Backend.FrontModel.TypeArticleFront)">
+            <summary>  
+            Update a Type Article 
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                Put/typearticle  
+                {       
+                    "id" : 1,
+                    "desg": "string",
+                    "impact": 0
+                }   
+            
+            Validation condition :  Customer name must be unique 
+               
+            </remarks>    
+            <param name="typeArticleFrontUpdate"></param>
+            <returns>A updated Customer</returns>
+        </member>
+        <member name="M:Backend.Controllers.TypeArticlesController.Delete(System.Int32)">
+            <summary>  
+            Delete a typeArticle
+            </summary>
+            <remarks>    
+                Validation condition :  must have no related data 
+               
+            </remarks>    
+            <param name="id"></param>
+            <returns>Returns the list of Customers</returns>
+            <response code="200">Returns the list of Customers</response>
+            <response code="401"> Not exist or Not active account: erreur MSG</response>
+            <response code="403"> You Have no right on this module.</response>
+            <response code="404"> NotFound.</response>
+            <response code="500"> InternalServerError</response>
+        </member>
+        <member name="M:Backend.Controllers.TypeTransactionController.Get(System.Int32)">
+            <summary>  
+            Get Type Transaction
+            </summary>
+            <param name="id">Get all if default</param>
+        </member>
+        <member name="M:Backend.Controllers.TypeTransactionController.Post(Backend.FrontModel.TypeTransaction)">
+            <summary>  
+            Add new type transaction
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                POST/typetran   
+                {          
+                   
+                }   
+            
+               
+            </remarks>   
+            <param name="typeTranAdd"></param>
+            <response code="200">List of Categorie transaction</response>
+        </member>
+        <member name="M:Backend.Controllers.TypeTransactionController.Put(Backend.FrontModel.TypeTransaction)">
+            <summary>  
+            Update a Type transaction 
+            </summary>
+            <remarks>    
+            Sample request:    
+               
+                Put/typetran 
+                {       
+                    "id" : 1,
+                    "designation": "dd",
+                    "remarque": "dd"
+                }       
+            </remarks>    
+            <param name="typeTranFrontUpdate"></param>
+            <returns>A updated type Transaction</returns>
+            <response code="200">Returns the updated type</response>
+        </member>
+        <member name="M:Backend.Controllers.TypeTransactionController.Delete(System.Int32)">
+            <summary>  
+            Delete a type Transaction
+            </summary>
+            <remarks>    
+                Validation condition :  must have no related data 
+               
+            </remarks>    
+            <param name="id"></param>
+            <returns>Returns the list of Categorie Transaction</returns>
+            <response code="200">Returns the list of Customers</response>
+        </member>
+        <member name="F:Backend.Extensions.ArineStatusCode.StatusCodeUserForbidden">
+            Status Code User
+        </member>
+        <member name="F:Backend.Extensions.ArineStatusCode.StatusCodeBadRequest">
+            Status Code Data 
+        </member>
+        <member name="F:Backend.Extensions.ArineStatusCode.StatusCodeInternalServerError">
+            Status Code Serveur 
+        </member>
+        <member name="P:Backend.FrontModel.DeclarationFront.Mois">
+            <summary>
+            mois de la declaration sous Forme MM-YYYY
+            </summary>
+        </member>
+        <member name="P:Backend.FrontModel.FactureFront.RefFacture">
+            <summary>
+            read only
+            </summary>
+        </member>
+        <member name="P:Backend.FrontModel.FactureFront.RSClient">
+            <summary>
+            readonly
+            </summary>
+        </member>
+        <member name="P:Backend.FrontModel.FactureFront.ALClient">
+            <summary>
+            readonly
+            </summary>
+        </member>
+        <member name="P:Backend.FrontModel.FactureFront.RCClient">
+            <summary>
+            readonly
+            </summary>
+        </member>
+        <member name="P:Backend.FrontModel.FactureFront.GClient">
+            <summary>
+            readonly
+            </summary>
+        </member>
+        <member name="P:Backend.FrontModel.FactureFront.RSTiers">
+            <summary>
+            readonly
+            </summary>
+        </member>
+        <member name="P:Backend.FrontModel.FactureFront.ALTiers">
+            <summary>
+            readonly
+            </summary>
+        </member>
+        <member name="P:Backend.FrontModel.FactureFront.RCTiers">
+            <summary>
+            readonly
+            </summary>
+        </member>
+        <member name="P:Backend.FrontModel.FactureFront.GTiers">
+            <summary>
+            readonly
+            </summary>
+        </member>
+        <member name="P:Backend.FrontModel.LigneFactureFront.Article">
+            <summary>
+            readonly
+            </summary>
+        </member>
+        <member name="P:Backend.FrontModel.LigneFactureFront.TypeArticle">
+            <summary>
+            readonly
+            </summary>
+        </member>
+        <member name="P:Backend.FrontModel.LigneFactureFront.ImpactTypeArticle">
+            <summary>
+            readonly
+            </summary>
+        </member>
+        <member name="M:Backend.Interfaces.IArineInterface.FJ_Get(System.String@,System.Int32@,System.String,System.Int32,System.Boolean)">
+            Bloc Forme Juridique
+        </member>
+        <member name="M:Backend.Interfaces.IArineInterface.MP_Get(System.String@,System.Int32@,System.String,System.Int32,System.Boolean)">
+            Bloc Mode Payement
+        </member>
+        <member name="M:Backend.Interfaces.IArineInterface.DA_Get(System.String@,System.Int32@,System.String,System.Int32,System.Boolean)">
+            Bloc Domaine Activité
+        </member>
+        <member name="M:Backend.Interfaces.IArineInterface.EF_Get(System.String@,System.Int32@,System.String,System.Int32,System.Boolean)">
+            Bloc Etat Facture
+        </member>
+        <member name="T:Backend.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgAccountInactive">
+            <summary>
+              Looks up a localized string similar to Votre compte ‘{0}&apos; a été désactivé..
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgAccountNotConnected">
+            <summary>
+              Looks up a localized string similar to Vous n&apos;êtes plus connecter..
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgAlreadyExists">
+            <summary>
+              Looks up a localized string similar to La valeur {1} du  {0} existe déjà dans la base de données..
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgAlreadyExistsPerCustomer">
+            <summary>
+              Looks up a localized string similar to Le client {2} a déjà un {0} dont la valeur est egale à {1}..
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgCloture">
+            <summary>
+              Looks up a localized string similar to La facture avec la ref {0} est déjà cloturer merci de vérifier..
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgDateTimeInvalide">
+            <summary>
+              Looks up a localized string similar to La format de la date est invalide. votre valeur doit respecter  la format suivante yyyyMMdd..
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgEmpty">
+            <summary>
+              Looks up a localized string similar to Le {0} est vide !!.
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgFieldInvalid">
+            <summary>
+              Looks up a localized string similar to La value du champs {0} est invalide..
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgInvalidEmail">
+            <summary>
+              Looks up a localized string similar to Adresse e-mail invalide.
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgKeyFound">
+            <summary>
+              Looks up a localized string similar to Il y a déjà un {0}  avec la valeur clé {2}  égale à {1}..
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgModelInvalidValueParam">
+            <summary>
+              Looks up a localized string similar to Model Invalide.
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgNoRight">
+            <summary>
+              Looks up a localized string similar to Vous n&apos;avez aucun droit sur ce module..
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgNotActive">
+            <summary>
+              Looks up a localized string similar to Il n&apos;y a pas des {0} active..
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgNotActiveRef">
+            <summary>
+              Looks up a localized string similar to Le {0}:  {1} doit être active..
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgNotAllowed">
+            <summary>
+              Looks up a localized string similar to Opération non autorisée..
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgNotExist">
+            <summary>
+              Looks up a localized string similar to Le  {0} &apos;{1}&apos; n&apos;est pas enregistrer dans la base de données ..
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgNotFound">
+            <summary>
+              Looks up a localized string similar to Il n&apos;y a pas de {0} avec le clé {1} ..
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgNotFoundModify">
+            <summary>
+              Looks up a localized string similar to Il n&apos;y a pas de {0} avec la valeur {1} à modifier..
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgNotFoundParam">
+            <summary>
+              Looks up a localized string similar to Il n&apos;y a pas de {0} avec la valeur du parametre {2} est égale à {1} ..
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgParentNotExist">
+            <summary>
+              Looks up a localized string similar to Il n&apos;y a de {0} avec la clé {1} pour y ajouter un {2}. .
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgReportAlreadyExists">
+            <summary>
+              Looks up a localized string similar to La chaine dont l&apos;ID : {0} dispose déjà d’un rapport pour le jour: {1}..
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgRequired">
+            <summary>
+              Looks up a localized string similar to Le champ {0} est obligatoire..
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgUnchangeable">
+            <summary>
+              Looks up a localized string similar to Le champ {0} n&apos;est pas modifiable dans la table {1} en raison d&apos;une contrainte d&apos;unicité..
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.MsgUnchangeableDataBound">
+            <summary>
+              Looks up a localized string similar to Le champ {0} n&apos;est pas modifiable dans le tableau {1} a cause des données liées.
+            </summary>
+        </member>
+        <member name="P:Backend.Properties.Resources.StringLengthError">
+            <summary>
+              Looks up a localized string similar to La langueur du champ {0} doits être   entre {2} et {1} caractère..
+            </summary>
+        </member>
+    </members>
+</doc>
